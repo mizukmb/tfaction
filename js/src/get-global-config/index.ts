@@ -49,6 +49,7 @@ interface Outputs {
   enable_tfsec: boolean;
   enable_tflint: boolean;
   enable_trivy: boolean;
+  enable_terraform_docs: boolean;
   tflint_fix: boolean;
 
   terraform_command: string;
@@ -97,6 +98,7 @@ export const main_ = (config: lib.Config, input: Input): Result => {
     enable_tfsec: config?.tfsec?.enabled ?? false,
     enable_tflint: config?.tflint?.enabled ?? true,
     enable_trivy: config?.trivy?.enabled ?? true,
+    enable_terraform_docs: config?.terraform_docs?.enabled ?? false,
     tflint_fix: config?.tflint?.fix ?? false,
     terraform_command: config?.terraform_command || "terraform",
 

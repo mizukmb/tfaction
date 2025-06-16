@@ -53,10 +53,12 @@ runs:
 
     # Remove .terraform.lock.hcl created by `terraform init` before running terraform-docs
     - run: "! test -f .terraform.lock.hcl || rm .terraform.lock.hcl"
+      if: fromJSON(steps.global-config.outputs.enable_terraform_docs)
       shell: bash
       working-directory: ${{ env.TFACTION_TARGET }}
 
     - uses: suzuki-shunsuke/tfaction/terraform-docs@main
+      if: fromJSON(steps.global-config.outputs.enable_terraform_docs)
       with:
         github_token: ${{ inputs.github_token }}
         working_directory: ${{ env.TFACTION_TARGET }}
